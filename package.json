@@ -1,0 +1,60 @@
+{
+  "name": "@macfja/serializer",
+  "version": "1.0.0",
+  "description": "Transform any object, class, array, primitive to a serialized string and vice-versa",
+  "main": "./dist/index.js",
+  "bugs": {
+    "url": "https://github.com/MacFJA/js-serializer/issues"
+  },
+  "homepage": "https://github.com/MacFJA/js-serializer",
+  "keywords": [
+    "serializer",
+    "serialization",
+    "deserializer"
+  ],
+  "repository": {
+    "url": "https://github.com/MacFJA/js-serializer.git",
+    "type": "git"
+  },
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
+  "files": [
+    "dist/",
+    "types/",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "test": "uvu tests/",
+    "pretest": "run-npm build",
+    "build": "run-npm -p 'type:definition' 'rollup -c'",
+    "format": "prettier --write src/ tests/ package.json *.md",
+    "lint:prettier": "prettier --check src/ tests/ package.json *.md",
+    "lint:eslint": "run -s 'eslint src/ tests/' 'echo ESLint OK'",
+    "lint": "run-npm -p 'lint:prettier' 'lint:eslint'",
+    "type:definition": "tsc src/index.ts --declaration --emitDeclarationOnly --outDir types",
+    "type:check": "tsc src/index.ts --noEmit",
+    "type": "run-npm -s 'type:check' 'type:definition'",
+    "doc": "ts-docs src/index.ts",
+    "prepublishOnly": "run-npm -s 'format' 'build'"
+  },
+  "author": "MacFJA",
+  "license": "MIT",
+  "type": "module",
+  "types": "types/index.d.ts",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@ts-docs/default-docs-structure": "^0.4.4",
+    "@ts-docs/ts-docs": "^0.4.4",
+    "eslint": "^8.21.0",
+    "prettier": "^2.7.1",
+    "rollup": "^2.77.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "script-runner": "^0.1.8",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4",
+    "uvu": "^0.5.6"
+  }
+}
