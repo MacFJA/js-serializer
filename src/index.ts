@@ -50,6 +50,10 @@ export function deserialize(
   text: string,
   allowedClasses: Record<string, FunctionConstructor> | undefined = undefined
 ): any {
+  if (typeof text !== "string") {
+    return text;
+  }
+
   if (allowedClasses === undefined) {
     allowedClasses = {};
   }
@@ -62,8 +66,12 @@ export function deserialize(
     ...Object.entries(globalClasses),
   ]);
 
-  const parsed = JSON.parse(text);
-  return plainToInstance(parsed, allowedClasses, {});
+  try {
+    const parsed = JSON.parse(text);
+    return plainToInstance(parsed, allowedClasses, {});
+  } catch (e) {
+    return text;
+  }
 }
 
 /**

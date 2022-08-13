@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1]
+
+### Added
+
+- Add `package.json` export
+
+### Fixed
+
+- Handle `undefined` (and any data that is not a string) in `deserialize`
+- Handle invalid JSON in `deserialize`
+
 ## [1.0.0]
 
 First version

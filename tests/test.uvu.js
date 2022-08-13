@@ -131,4 +131,17 @@ test("complex array/object", () => {
   testFromDataset(input);
 });
 
+test("undefined", () => {
+  const input = [undefined];
+  testFromDataset(input);
+});
+
+test("deserialized unexpected value", () => {
+  const input = [undefined, "hello world"];
+  input.forEach((value) => {
+    const parsed = deserialize(value);
+    assert.equal(parsed, value);
+  });
+});
+
 test.run();
