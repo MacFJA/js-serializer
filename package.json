@@ -1,6 +1,6 @@
 {
   "name": "@macfja/serializer",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Transform any object, class, array, primitive to a serialized string and vice-versa",
   "main": "./dist/index.js",
   "bugs": {

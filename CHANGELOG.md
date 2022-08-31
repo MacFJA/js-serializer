@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0]
+
+### Added
+
+- Support for plain JSON deserialization
+- (dev) GitHub Action
+
+### Fixed
+
+- Export name in UMD build
+
+### Removed
+
+- Unused file
+
 ## [1.0.2]
 
 ### Fixed
@@ -28,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First version
 
-[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.0.2...HEAD
+[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.0...HEAD
+[1.0.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.0
 [1.0.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.2
 [1.0.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.1
 [1.0.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.0

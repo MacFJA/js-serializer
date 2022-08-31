@@ -136,10 +136,24 @@ test("undefined", () => {
   testFromDataset(input);
 });
 
-test("deserialized unexpected value", () => {
+test("deserialize unexpected value", () => {
   const input = [undefined, "hello world"];
   input.forEach((value) => {
     const parsed = deserialize(value);
+    assert.equal(parsed, value);
+  });
+});
+
+test("deserialize standard JSON value", () => {
+  const input = [
+    [0, 1, 2, 3],
+    { john: "doe", jeanne: "doe", 10: 20, 30: 40 },
+    "john",
+    10,
+  ];
+  input.forEach((value) => {
+    const serialized = JSON.stringify(value);
+    const parsed = deserialize(serialized);
     assert.equal(parsed, value);
   });
 });

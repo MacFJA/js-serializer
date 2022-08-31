@@ -1,0 +1,10 @@
+/.github
+/docs
+/node_modules
+/src
+/tests
+/.eslintrc.json
+/.*ignore
+/CHANGELOG.md
+/CONTRIBUTING.md
+/rollup.config.js

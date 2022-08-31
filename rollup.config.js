@@ -6,7 +6,7 @@ export default {
     output: [
         {format:"cjs", file: "dist/index.cjs"},
         {format: "es", file: "dist/index.mjs"},
-        {format: "umd", file: "dist/index.js", name: "macfja-x"}
+        {format: "umd", file: "dist/index.js", name: "macfja-serializer"}
     ],
     plugins: [
         typescript(),

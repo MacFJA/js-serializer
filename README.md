@@ -2,6 +2,12 @@
 
 Transform any object, class, array, primitive to a serialized string and vice-versa
 
+![NPM bundle size](https://img.shields.io/bundlephobia/minzip/@macfja/serializer)
+![Download per week](https://img.shields.io/npm/dw/@macfja/serializer)
+![License](https://img.shields.io/npm/l/@macfja/serializer)
+![NPM version](https://img.shields.io/npm/v/@macfja/serializer)
+![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/@macfja/serializer)
+
 ## Installation
 
 ```shell
@@ -91,3 +97,13 @@ addClassHandler(
 - Serialize any data, primitive, array, object, class, and any combination
 - Handle Javascript native classes (`Date`, `BigInt`, `String`, `RegExp`, `Number`, `Map`, `Set`, `ArrayBuffer`, `DataView`, `Error`, `EvalError`, `RangeError`, `AggregateError`, `ReferenceError`, `SyntaxError`, `TypeError`, `URIError`, `Int8Array`, `Uint8Array`, `Uint8ClampedArray`, `Int16Array`, `Uint16Array`, `Int32Array`, `Uint32Array`, `Float32Array`, `Float64Array`, `BigInt64Array`, `BigUint64Array`)
 - Handle data recursion
+
+## Contributing
+
+Contributions are welcome. Please open up an issue or create PR if you would like to help out.
+
+Read more in the [Contributing file](CONTRIBUTING.md)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

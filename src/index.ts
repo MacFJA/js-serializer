@@ -24,6 +24,8 @@ const classHandlers: Record<
   }
 > = {};
 
+class UnexpectedJSONValueError extends Error {}
+
 const CONSTRUCTOR_KEY = "#$@__constructor__";
 const INSTANCE_PREFIX = "#$@__instance__";
 const REFERENCE_PREFIX = "#$@__reference__";
@@ -164,7 +166,18 @@ function plainToInstance(
     if (data.length === 0) {
       return [];
     }
-    const index = data.shift().slice(REFERENCE_PREFIX.length);
+    const indexLine = data.shift();
+    if (
+      typeof indexLine !== "string" ||
+      indexLine.substring(0, REFERENCE_PREFIX.length) !== REFERENCE_PREFIX
+    ) {
+      if (Object.keys(found).length === 0) {
+        data.unshift(indexLine);
+        return data;
+      }
+      throw new UnexpectedJSONValueError();
+    }
+    const index = indexLine.slice(REFERENCE_PREFIX.length);
     const transformed = [];
     found[index] = transformed;
     for (let elementIndex = 0; elementIndex < data.length; elementIndex++) {
@@ -178,7 +191,11 @@ function plainToInstance(
   }
 
   if (data.constructor === Object) {
-    const index = data[REFERENCE_PREFIX];
+    const index = data[REFERENCE_PREFIX] ?? null;
+    if (index === null) {
+      if (Object.keys(found).length === 0) return data;
+      throw new UnexpectedJSONValueError();
+    }
     delete data[REFERENCE_PREFIX];
 
     if (!Object.keys(data).includes(CONSTRUCTOR_KEY)) {
