@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1]
+
+### Fixed
+
+- Data reference not working properly
+
 ## [1.1.0]
 
 ### Added
@@ -43,8 +49,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First version
 
-[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.0...HEAD
-[1.0.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.0
+[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.1
+[1.1.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.0
 [1.0.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.2
 [1.0.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.1
 [1.0.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.0

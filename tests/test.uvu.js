@@ -158,4 +158,21 @@ test("deserialize standard JSON value", () => {
   });
 });
 
+test("nested array have different identifier", () => {
+  const input = [1, [2]];
+  const serialized = serialize(input);
+  assert.equal(serialized, '["#$@__reference__0",1,["#$@__reference__1",2]]');
+});
+
+test("circular reference with class", () => {
+  const instance = new TestClass();
+  const input = [instance, instance];
+  const serialized = serialize(input);
+  assert.equal(
+    serialized,
+    '["#$@__reference__0",{"#$@__constructor__":"TestClass","#$@__reference__":1,"name":"John"},"#$@__instance__1"]'
+  );
+  assert.equal(deserialize(serialized, { TestClass }), input);
+});
+
 test.run();

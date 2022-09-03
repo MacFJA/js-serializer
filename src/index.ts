@@ -97,10 +97,11 @@ function instanceToPlain(data: any, observed: Array<any>): PlainType {
   }
 
   observed.push(data);
+  const dataReference = observed.length - 1;
 
   if (data.constructor === Array) {
     let newArray = data.map((item) => instanceToPlain(item, observed));
-    newArray.unshift(REFERENCE_PREFIX + (observed.length - 1));
+    newArray.unshift(REFERENCE_PREFIX + dataReference);
     return newArray;
   }
 
@@ -111,7 +112,7 @@ function instanceToPlain(data: any, observed: Array<any>): PlainType {
         instanceToPlain(value, observed),
       ])
     );
-    newObject[REFERENCE_PREFIX] = observed.length - 1;
+    newObject[REFERENCE_PREFIX] = dataReference;
     return newObject;
   }
 
@@ -122,7 +123,7 @@ function instanceToPlain(data: any, observed: Array<any>): PlainType {
     enumerable: true,
   });
   final = Object.defineProperty(final, REFERENCE_PREFIX, {
-    value: observed.length - 1,
+    value: dataReference,
     enumerable: true,
   });
 
