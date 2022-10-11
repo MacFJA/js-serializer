@@ -2,7 +2,7 @@
  * @internal
  * @ignore
  * @param {(classname:string,toPlain:(source: any, next: (data: any) => any) => object | undefined,fromPlain:(source: object, next: (data: any) => any) => any | undefined)=>void} addClassHandler
- * @param {(classConstructor:FunctionConstructor)=>void} addGlobalAllowedClass
+ * @param {(classConstructor:ClassDefinition<any>)=>void} addGlobalAllowedClass
  * @return void
  */
 export function addNativeClasses(addClassHandler, addGlobalAllowedClass) {

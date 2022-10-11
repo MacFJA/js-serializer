@@ -2,6 +2,7 @@
 
 Transform any object, class, array, primitive to a serialized string and vice-versa
 
+![Github CI](https://github.com/macfja/js-serializer/actions/workflows/quality.yml/badge.svg)
 ![NPM bundle size](https://img.shields.io/bundlephobia/minzip/@macfja/serializer)
 ![Download per week](https://img.shields.io/npm/dw/@macfja/serializer)
 ![License](https://img.shields.io/npm/l/@macfja/serializer)
@@ -88,7 +89,7 @@ addClassHandler(
   }
 );
 
-// Now  `serialize` and `deserialize` will use your custom serializer / deserializer
+// Now `serialize` and `deserialize` will use your custom serializer / deserializer
 // for any instance of `MyClass`
 ```
 

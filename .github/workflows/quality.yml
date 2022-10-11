@@ -1,4 +1,4 @@
-name: Run Quality tools
+name: Quality checks
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   lint:
+    name: Lint (Prettier + ESLint)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,6 +27,7 @@ jobs:
         run: npm run lint:eslint
 
   test:
+    name: 'Unit test'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

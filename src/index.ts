@@ -1,12 +1,37 @@
 import { addNativeClasses } from "./native.js";
+
+/**
+ * Type of class definition.
+ * It accepts function identified as constructor (FunctionConstructor) or the class object.
+ */
+export type ClassDefinition<T> =
+  | (new (...args: any[]) => T)
+  | FunctionConstructor;
+
+/**
+ * Type representing the transformed object data.
+ * It must be a primitive (`string`, `number`, `boolean`), an `array` of primitive, or an `object` containing primitive.
+ *
+ * _(It can be an array containing object of primitive. Object can also contain a such array)_
+ */
+export type PlainType = string | number | boolean | object | any[];
+
+class UnexpectedJSONValueError extends Error {}
+
+const CONSTRUCTOR_KEY = "#$@__constructor__";
+const INSTANCE_PREFIX = "#$@__instance__";
+const REFERENCE_PREFIX = "#$@__reference__";
+
 /**
  * List of constructor to use for data extraction
  */
-let globalClasses: Record<string, FunctionConstructor> = {};
+let globalClasses: Record<string, ClassDefinition<any>> = {};
 /**
  * List of constructor found during serialization
  */
-let collectedClasses: Set<FunctionConstructor> = new Set<FunctionConstructor>();
+let collectedClasses: Set<ClassDefinition<any>> = new Set<
+  ClassDefinition<any>
+>();
 /**
  * List of special class handler.
  * It allowed to define a custom serializer/deserializer for a class.
@@ -23,14 +48,6 @@ const classHandlers: Record<
     ) => object | undefined;
   }
 > = {};
-
-class UnexpectedJSONValueError extends Error {}
-
-const CONSTRUCTOR_KEY = "#$@__constructor__";
-const INSTANCE_PREFIX = "#$@__instance__";
-const REFERENCE_PREFIX = "#$@__reference__";
-
-type PlainType = string | number | boolean | object | any[];
 
 /**
  * Serialized a data
@@ -50,7 +67,7 @@ export function serialize(data: any): string {
  */
 export function deserialize(
   text: string,
-  allowedClasses: Record<string, FunctionConstructor> | undefined = undefined
+  allowedClasses: Record<string, ClassDefinition<any>> | undefined = undefined
 ): any {
   if (typeof text !== "string") {
     return text;
@@ -146,7 +163,7 @@ function instanceToPlain(data: any, observed: Array<any>): PlainType {
  */
 function plainToInstance(
   data: PlainType,
-  allowedClasses: Record<string, FunctionConstructor>,
+  allowedClasses: Record<string, ClassDefinition<any>>,
   found: Record<number, any>
 ): any {
   if (typeof data === "string" && data.indexOf(INSTANCE_PREFIX) === 0) {
@@ -243,16 +260,16 @@ function handleSpecialToPlain(
 function handlePlainToSpecial(
   object: object,
   requested: string,
-  allowedClasses: Record<string, FunctionConstructor>,
+  allowedClasses: Record<string, ClassDefinition<any>>,
   found: Record<number, any>
 ): any | undefined {
   if (!Object.keys(classHandlers).includes(requested)) {
     return undefined;
   }
 
-  return classHandlers[requested].fromPlain(object, (input) =>
-    plainToInstance(input, allowedClasses, found)
-  );
+  return classHandlers[requested].fromPlain(object, (input) => {
+    return plainToInstance(input, allowedClasses, found);
+  });
 }
 
 /**
@@ -261,7 +278,7 @@ function handlePlainToSpecial(
  */
 export function getCollectedClasses(
   clear: boolean = false
-): Array<FunctionConstructor> {
+): Array<ClassDefinition<any>> {
   const collected = Array.from(collectedClasses);
   if (clear) {
     resetCollectedClasses();
@@ -306,17 +323,17 @@ export function resetCollectedClasses(): void {
  * @param append If `true` the provided classes will be added to the existing list, if `false` (default) the provided list will replace.
  */
 export function setGlobalAllowedClasses(
-  classes: Record<string, FunctionConstructor> | Array<FunctionConstructor>,
+  classes: Record<string, ClassDefinition<any>> | Array<ClassDefinition<any>>,
   append: boolean = false
 ): void {
-  let newClasses: Record<string, FunctionConstructor> = {};
+  let newClasses: Record<string, ClassDefinition<any>> = {};
   if (classes.constructor === Array) {
     newClasses = Object.fromEntries(
       classes.map((constructor) => [constructor.name, constructor])
     );
   }
   if (typeof classes === "object") {
-    newClasses = classes as Record<string, FunctionConstructor>;
+    newClasses = classes as Record<string, ClassDefinition<any>>;
   }
   if (append) {
     globalClasses = Object.fromEntries([
@@ -332,7 +349,7 @@ export function setGlobalAllowedClasses(
 /**
  * Add a class in the list of allowed classes for deserialization.
  */
-export function addGlobalAllowedClass(classConstructor: FunctionConstructor) {
+export function addGlobalAllowedClass(classConstructor: ClassDefinition<any>) {
   globalClasses[classConstructor.name] = classConstructor;
 }
 

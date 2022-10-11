@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2]
+
+### Fixed
+
+- Class definition type not wide enough ([svelte-persistent-store#32])
+- (dev) Group `type`, `const`, `class` at the start of the file
+- (dev) Expose `PlainType` type
+
+### Changed
+
+- (dev) Minor tweaks on CI
+
 ## [1.1.1]
 
 ### Fixed
@@ -49,9 +61,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First version
 
-[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.1...HEAD
+[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.2...HEAD
+[1.1.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.2
 [1.1.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.1
 [1.1.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.0
 [1.0.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.2
 [1.0.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.1
 [1.0.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.0
+[svelte-persistent-store#32]: https://github.com/MacFJA/svelte-persistent-store/issues/32
