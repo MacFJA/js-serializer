@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3]
+
+### Fixed
+
+- Better handling of older JS engine version ([issue#1])
+
 ## [1.1.2]
 
 ### Fixed
@@ -61,7 +67,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First version
 
-[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.2...HEAD
+[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.3...HEAD
+[1.1.3]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.3
 [1.1.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.2
 [1.1.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.1
 [1.1.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.0
@@ -69,3 +76,4 @@ First version
 [1.0.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.1
 [1.0.0]: https://github.com/MacFJA/js-serializer/releases/tag/1.0.0
 [svelte-persistent-store#32]: https://github.com/MacFJA/svelte-persistent-store/issues/32
+[issue#1]: https://github.com/MacFJA/js-serializer/issues/1

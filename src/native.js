@@ -104,24 +104,28 @@ export function addNativeClasses(addClassHandler, addGlobalAllowedClass) {
   );
 
   [
-    Error,
-    EvalError,
-    RangeError,
-    AggregateError,
-    ReferenceError,
-    SyntaxError,
-    TypeError,
-    URIError,
-    Int8Array,
-    Uint8Array,
-    Uint8ClampedArray,
-    Int16Array,
-    Uint16Array,
-    Int32Array,
-    Uint32Array,
-    Float32Array,
-    Float64Array,
-    BigInt64Array,
-    BigUint64Array,
-  ].forEach((constructor) => addGlobalAllowedClass(constructor));
+    "Error",
+    "EvalError",
+    "RangeError",
+    "AggregateError",
+    "ReferenceError",
+    "SyntaxError",
+    "TypeError",
+    "URIError",
+    "Int8Array",
+    "Uint8Array",
+    "Uint8ClampedArray",
+    "Int16Array",
+    "Uint16Array",
+    "Int32Array",
+    "Uint32Array",
+    "Float32Array",
+    "Float64Array",
+    "BigInt64Array",
+    "BigUint64Array",
+  ].forEach((constructor) => {
+    if (typeof global[constructor] !== "undefined") {
+      addGlobalAllowedClass(global[constructor]);
+    }
+  });
 }
