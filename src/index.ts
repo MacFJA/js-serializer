@@ -370,10 +370,13 @@ export function addGlobalAllowedClass(classConstructor: ClassDefinition<any>) {
  * @param toPlain The function to transform the class instance (1rst param) to a JS plain object. The second parameter is the transformation process function. If undefined is return the normal transformation is used
  * @param fromPlain The function to transform plain js object into a class instance. The second parameter is the transformation process function. If undefined is return the normal transformation is used
  */
-export function addClassHandler(
+export function addClassHandler<Instance = any, Plain extends object = object>(
   classname: string,
-  toPlain: (source: any, next: (data: any) => PlainType) => object | undefined,
-  fromPlain: (source: object, next: (data: any) => any) => any | undefined
+  toPlain: (
+    source: Instance,
+    next: (data: any) => PlainType
+  ) => Plain | undefined,
+  fromPlain: (source: Plain, next: (data: any) => any) => Instance | undefined
 ): void {
   classHandlers[classname] = { toPlain, fromPlain };
 }

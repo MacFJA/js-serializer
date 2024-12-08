@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.4]
+
+### Fixed
+
+- Fix compatibility with Node and `global`/`globalThis`
+
+### Changed
+
+- Improve typing
+
 ## [1.1.3]
 
 ### Fixed
@@ -67,7 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First version
 
-[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.3...HEAD
+[unreleased]: https://github.com/MacFJA/js-serializer/compare/1.1.4...HEAD
+[1.1.4]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.4
 [1.1.3]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.3
 [1.1.2]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.2
 [1.1.1]: https://github.com/MacFJA/js-serializer/releases/tag/1.1.1

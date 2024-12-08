@@ -124,8 +124,11 @@ export function addNativeClasses(addClassHandler, addGlobalAllowedClass) {
     "BigInt64Array",
     "BigUint64Array",
   ].forEach((constructor) => {
-    if (typeof global[constructor] !== "undefined") {
-      addGlobalAllowedClass(global[constructor]);
+    const globalObject =
+      (typeof globalThis !== "undefined" && globalThis) ||
+      (typeof global !== "undefined" && global);
+    if (globalObject && typeof globalObject[constructor] !== "undefined") {
+      addGlobalAllowedClass(globalObject[constructor]);
     }
   });
 }
